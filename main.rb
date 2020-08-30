@@ -1,6 +1,5 @@
-require 'pry'
-require_relative 'dsl'
-require_relative 'board'
+require_relative './lib/dsl'
+require_relative './lib/board'
 
 board = Board.new
 

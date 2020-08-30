@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../dsl"
+require_relative "../lib/dsl"
 
 class TestDSL < Test::Unit::TestCase
   def test_parse_a_command

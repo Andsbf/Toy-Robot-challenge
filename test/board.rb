@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../Board"
+require_relative "../lib/board"
 
 class TestBoard < Test::Unit::TestCase
   def setup
