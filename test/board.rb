@@ -168,6 +168,34 @@ class TestBoard < Test::Unit::TestCase
     )
   end
 
+  def test_process_a_move_that_would_get_out_of_edge
+    board = Board.new(output: Output.new, logger: Output.new, debug: true)
+
+    board.process_command(
+      {
+        robot_name: 'BOB',
+        instruction: 'PLACE',
+        details: { x: 0, y: 0, direction: "SOUTH" }
+      }
+    )
+
+    board.process_command(
+      {
+        robot_name: 'BOB',
+        instruction: 'MOVE',
+        details: nil
+      }
+    )
+
+    boardRobot = board.robots['BOB']
+
+    assert_equal(boardRobot.nil?, false )
+    assert_equal(
+      board.logger.history[0],
+      'Ignoring command: {:robot_name=>"BOB", :instruction=>"MOVE", :details=>nil}'
+    )
+  end
+
   module Helpers
     def self.board_with_one_robot
       board = Board.new(output: Output.new, logger: Output.new)
