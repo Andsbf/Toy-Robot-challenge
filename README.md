@@ -12,25 +12,21 @@ PS: Lower versions should work fine, as I can't remember using anything from rub
 
 ### Modes
 
-The code can be used in two ways, a file can be provided as an input/argument, and robots instructions would be parsed from the file. Or Interactive-mode, where the user instructions would be typed in the console and executed.
+The program can be used in two ways, a file can be provided as an input/argument, and robots instructions would be parsed from the file. Or Interactive-mode, where the user instructions would be typed in the console and executed.
 
 Eg.
 Read from file:
 ```
-# DEBUG=true ruby main.rb ./instruction_sample.txt
+ruby main.rb ./instruction_sample.txt
 ```
 
 Read from CLI:
 ```
-DEBUG=true ruby main.rb
+ruby main.rb
 
 ALICE: PLACE 0,0,NORTH
 ALICE: MOVE
 ...
-```
-
-```
-Give examples
 ```
 
 ### Outputs
@@ -53,18 +49,17 @@ ps: the default debugging method will create a file named with the current times
 
 Eg:
 
-The `instruction_sample.txt` has 3 invalid commands, after after running:
+The `instruction_sample.txt` has 3 invalid commands(a command before a placement, a placement on top of another robot and a collision), after after running:
 
 ```
 DEBUG=true ruby main.rb ./instruction_sample.txt
 ```
 
-A file like `20200831092219.txt`(timestamp.txt) will be created including the logging for that program excuction, in this case the list of the 3 invalid commands
-
+A file like `log_20200831092219.txt`(timestamp.txt) will be created including the logging for that program excuction, in this case the list of the 3 invalid commands
 
 ### Outputs & Log
 
-It has to be clear that the output is where the robot's reports will be "write/printed" and logs are for execution execptions.
+It has to be clear that the output is where the robot's reports will be "write/printed" and logs are for execution execptions/debugging.
 
 ## Considerations:
 
@@ -83,3 +78,8 @@ BOB: LEFT
 BOB: REPORT
 ```
 I used some commom sense and coded it considering the robots could not go over the edge, in case my logic is not right I would be more than happy to submit a new commit once we clarify this.
+
+* Possible improvements if this was a real project:
+  * Create Command classes, like: PlaceCommand, MoveCommand
+  * More specific logging for the "invalid commands"
+  * Use a proper testing framework, like RSPEC

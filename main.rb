@@ -1,7 +1,7 @@
 require_relative './lib/dsl'
 require_relative './lib/board'
 
-board = Board.new
+board = Board.new(logger: FileOutput.new("log_#{Time.now.strftime("%Y%m%d%H%M%S")}.txt"))
 
 instruction_filpath = ARGV[0]
 
