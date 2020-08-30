@@ -12,7 +12,6 @@ class TestDSL < Test::Unit::TestCase
     assert_equal(command[:details], nil )
   end
 
-
   def test_parse_a_place_comand
     dsl = DSL.new(commands: ['aNAME: PLACE  1,3,SOUTH'])
 
@@ -26,13 +25,13 @@ class TestDSL < Test::Unit::TestCase
   end
 
   def test_parse_a_invalid_comand
-    logger = ConsoleOutput.new
+    logger = Output.new
     dsl = DSL.new(commands: ['asdasd'], debug: true, logger: logger)
 
-    command = dsl.parse_commands
+    commands = dsl.parse_commands
 
-    assert_equal(dsl.parse_commands.length, 0)
-    assert_send([dsl.logger.history, :include?, "Invalid command: asdasd"])
+    assert_equal(commands.length, 0)
+    assert_send([dsl.logger.history, :include?, "No able to parse command: asdasd"])
   end
 
   def test_parse_multiple_commands

@@ -8,6 +8,10 @@ class DSL
     instance.parse_commands
   end
 
+  def self.parse_string string
+    instance = new(commands: [string])
+    instance.parse_commands[0]
+  end
   attr_reader :logger
 
   def initialize(commands:, debug: ENV['DEBUG'], logger: ConsoleOutput.new)
@@ -35,7 +39,8 @@ class DSL
     }
 
   rescue
-    @logger.write "Invalid command: #{command.to_s}" if @debug
+    @logger.write "No able to parse command: #{command.to_s}" if @debug
+
     return nil
   end
 
