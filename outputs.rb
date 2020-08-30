@@ -24,16 +24,18 @@ class FileOutput < Output
       filename
     else
       # append `(1)` before file extension
-      return FileOutput.unique_filename filename.gsub(/(\.[^\.]+)$/, '(1)'+'\1')
+      FileOutput.unique_filename filename.gsub(/(\.[^\.]+)$/, '(1)'+'\1')
     end
   end
 
   def initialize filename = (Time.now.strftime("%Y%m%d%H%M%S") + ".txt")
     super()
 
-    File.open(filename, "w") {}
+    _filename = FileOutput.unique_filename(filename)
 
-    @filename = FileOutput.unique_filename(filename)
+    File.open(_filename, "w") {}
+
+    @filename = _filename
   end
 
   def write param
