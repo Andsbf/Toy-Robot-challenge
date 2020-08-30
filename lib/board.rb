@@ -12,7 +12,9 @@ class Board
   def initialize (debug: ENV['DEBUG'], output: ConsoleOutput.new, logger: FileOutput.new)
     @robots = {}
     @debug = debug.to_s == "true"
+    # @output where robot's reports are printed/written
     @output = output
+    # @logger where debug/logs are printed/written
     @logger = logger
   end
 
