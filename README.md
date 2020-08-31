@@ -23,10 +23,20 @@ Read from CLI:
 ```
 ruby main.rb
 
+[Interactive mode]
+Enter instructions:
+(press crtl-d to exit)
+
 ALICE: PLACE 0,0,NORTH
 ALICE: MOVE
 ...
 ```
+
+## How it works
+The program can be logically breakdown in 2 parts.
+
+* The DSL parser, class responsible for parsing the commands
+* The Board and Robot classes, where the parsed commands are applied to.
 
 ### Outputs
 
@@ -42,7 +52,7 @@ ruby ./test/all.rb
 ```
 
 ### Debugging
-The program reads from the environment the flag `DEBUG`, in case the flag is on/true, all the logging will be done according to the logging method selected, by default the program will log to a file, but this is configurable(the terminal/console can also be used for debugging). If the DEBUG environment variable is not the the log file for the program execution will be empty. The Default for the DEBUG is true, for the sake of this exercise.
+The program reads from the environment the flag `DEBUG`, in case the flag is on/true, all the logging will be done according to the logging method selected, by default the program will log to a file, but this is configurable(the terminal/console can also be used for debugging). If the DEBUG environment variable is set to false, the log file for the program execution will be empty. The Default for the DEBUG is true, for the sake of this exercise.
 
 ps: The default debugging method will create a file named with the current timestamp at the root of the project.
 
@@ -83,10 +93,27 @@ BOB: PLACE 0,0,NORTH
 BOB: LEFT
 BOB: REPORT
 ```
-I used some commom sense and coded it considering the robots could not go over the edge, in case my logic is not right I would be more than happy to submit a new commit once we clarify this.
+I used some commom sense and coded it considering the robots could not go over the edge, in case my logic is not right I would be more than happy to submit a patch/new commit once we clarify it.
 
 ### Possible improvements, if this was a real project:
-  * Create Command classes, like: PlaceCommand, MoveCommand
+  * Create Command classes, like: PlaceCommand, MoveCommand,..., so the board `process_command` would do a type check instead of a match on the instruction string
+  ```
+  case command[:instruction]
+    when 'PLACE'
+    ...
+  ```
+  would be:
+  ```
+  case command.class
+    when PlaceCommand
+    ...
+    when MoveCommand
+  ```
+
+  * Create value Object "Position", so we could more easily compare possitions. Like robot_a.posistion == robot_b.position
   * More specific logging for the "invalid commands", add reason for the command be invalid
   * Use a proper testing framework, like RSPEC
   * Make the Output and Log method selectable through Env variable
+  * Create Constants file and move the directions 'NORT,'
+  * Make the commands processing case insesitive? that would a project decision...
+  * There is a endless number of improvements/polishing that can be done on any project, it is hard to know when to stop without knowing the bigger scope of a project, like where/how this program would be used. If you guys would like to polish the program more, I would be happy to push more commits addressing more specific requirements.
