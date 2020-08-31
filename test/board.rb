@@ -18,12 +18,12 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.robots['BOB']
+    board_robot = board.robots['BOB']
 
-    assert_equal(boardRobot.nil?, false )
-    assert_equal(boardRobot.x, 1 )
-    assert_equal(boardRobot.y, 2 )
-    assert_equal(boardRobot.face_direction, "NORTH" )
+    assert_equal(board_robot.nil?, false )
+    assert_equal(board_robot.x, 1 )
+    assert_equal(board_robot.y, 2 )
+    assert_equal(board_robot.face_direction, "NORTH" )
   end
 
   def test_process_a_move_command
@@ -37,11 +37,11 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.robots['BOB']
+    board_robot = board.robots['BOB']
 
-    assert_equal(boardRobot.x, 0 )
-    assert_equal(boardRobot.y, 1 )
-    assert_equal(boardRobot.face_direction, "NORTH" )
+    assert_equal(board_robot.x, 0 )
+    assert_equal(board_robot.y, 1 )
+    assert_equal(board_robot.face_direction, "NORTH" )
   end
 
   def test_process_a_left_command
@@ -55,11 +55,11 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.instance_variable_get(:@robots)['BOB']
+    board_robot = board.instance_variable_get(:@robots)['BOB']
 
-    assert_equal(boardRobot.x, 0)
-    assert_equal(boardRobot.y, 0)
-    assert_equal(boardRobot.face_direction, "WEST" )
+    assert_equal(board_robot.x, 0)
+    assert_equal(board_robot.y, 0)
+    assert_equal(board_robot.face_direction, "WEST" )
   end
 
   def test_process_a_right_command
@@ -73,11 +73,11 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.instance_variable_get(:@robots)['BOB']
+    board_robot = board.instance_variable_get(:@robots)['BOB']
 
-    assert_equal(boardRobot.x, 0)
-    assert_equal(boardRobot.y, 0)
-    assert_equal(boardRobot.face_direction, "EAST" )
+    assert_equal(board_robot.x, 0)
+    assert_equal(board_robot.y, 0)
+    assert_equal(board_robot.face_direction, "EAST" )
   end
 
   def test_process_a_report_command
@@ -107,9 +107,9 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.robots['BOB']
+    board_robot = board.robots['BOB']
 
-    assert_equal(boardRobot.nil?, true )
+    assert_equal(board_robot.nil?, true )
     assert_equal(
       board.logger.history[0],
       'Ignoring command: {:robot_name=>"BOB", :instruction=>"MOVE", :details=>nil}'
@@ -129,9 +129,9 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.robots['ALICE']
+    board_robot = board.robots['ALICE']
 
-    assert_equal(boardRobot.nil?, true )
+    assert_equal(board_robot.nil?, true )
     assert_equal(
       board.logger.history[0],
       'Ignoring command: {:robot_name=>"ALICE", :instruction=>"PLACE", :details=>{:x=>0, :y=>0, :direction=>"NORTH"}}'
@@ -159,9 +159,9 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.robots['ALICE']
+    board_robot = board.robots['ALICE']
 
-    assert_equal(boardRobot.nil?, false )
+    assert_equal(board_robot.nil?, false )
     assert_equal(
       board.logger.history[0],
       'Ignoring command: {:robot_name=>"ALICE", :instruction=>"MOVE", :details=>nil}'
@@ -187,9 +187,9 @@ class TestBoard < Test::Unit::TestCase
       }
     )
 
-    boardRobot = board.robots['BOB']
+    board_robot = board.robots['BOB']
 
-    assert_equal(boardRobot.nil?, false )
+    assert_equal(board_robot.nil?, false )
     assert_equal(
       board.logger.history[0],
       'Ignoring command: {:robot_name=>"BOB", :instruction=>"MOVE", :details=>nil}'
