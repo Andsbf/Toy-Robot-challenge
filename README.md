@@ -43,7 +43,7 @@ ruby ./test/all.rb
 ```
 
 ### Debugging
-The program reads from the environment the flag `DEBUG`, in case the flag is on/true, all the logging will be done according to the logging method selected, by default the program will log to a file, but this is configurable(the terminal/console can also be used for debugging)
+The program reads from the environment the flag `DEBUG`, in case the flag is on/true, all the logging will be done according to the logging method selected, by default the program will log to a file, but this is configurable(the terminal/console can also be used for debugging). If the DEBUG environment variable is not the the log file for the program execution will be empty
 
 ps: the default debugging method will create a file named with the current timestamp at the root of the project.
 
@@ -56,6 +56,13 @@ DEBUG=true ruby main.rb ./instruction_sample.txt
 ```
 
 A file like `log_20200831092219.txt`(timestamp.txt) will be created including the logging for that program excuction, in this case the list of the 3 invalid commands
+
+Example of logging to console:
+
+```
+# When instantiating the board
+  Board.new(logger: ConsoleOutput.new)
+```
 
 ### Outputs & Log
 
@@ -79,7 +86,8 @@ BOB: REPORT
 ```
 I used some commom sense and coded it considering the robots could not go over the edge, in case my logic is not right I would be more than happy to submit a new commit once we clarify this.
 
-* Possible improvements if this was a real project:
+### Possible improvements, if this was a real project:
   * Create Command classes, like: PlaceCommand, MoveCommand
   * More specific logging for the "invalid commands"
   * Use a proper testing framework, like RSPEC
+  * Make the Output and Log method selectable through Env variable
