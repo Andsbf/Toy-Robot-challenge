@@ -11,7 +11,6 @@ This is a pure ruby project, ruby 2.4.6 was used for development of this project
 PS: Lower versions should work fine, as I can't remember using anything from ruby latests version, but it was not tested on a lower version.
 
 ### Modes
-
 The program can be used in two ways, a file can be provided as an input/argument, and robots instructions would be parsed from the file. Or Interactive-mode, where the user instructions would be typed in the console and executed.
 
 Eg.
@@ -43,19 +42,19 @@ ruby ./test/all.rb
 ```
 
 ### Debugging
-The program reads from the environment the flag `DEBUG`, in case the flag is on/true, all the logging will be done according to the logging method selected, by default the program will log to a file, but this is configurable(the terminal/console can also be used for debugging). If the DEBUG environment variable is not the the log file for the program execution will be empty
+The program reads from the environment the flag `DEBUG`, in case the flag is on/true, all the logging will be done according to the logging method selected, by default the program will log to a file, but this is configurable(the terminal/console can also be used for debugging). If the DEBUG environment variable is not the the log file for the program execution will be empty. The Default for the DEBUG is true, for the sake of this exercise.
 
-ps: the default debugging method will create a file named with the current timestamp at the root of the project.
+ps: The default debugging method will create a file named with the current timestamp at the root of the project.
 
 Eg:
 
 The `instruction_sample.txt` has 3 invalid commands(a command before a placement, a placement on top of another robot and a collision), after after running:
 
 ```
-DEBUG=true ruby main.rb ./instruction_sample.txt
+ruby main.rb ./instruction_sample.txt
 ```
 
-A file like `log_20200831092219.txt`(timestamp.txt) will be created including the logging for that program excuction, in this case the list of the 3 invalid commands
+A file like `log_20200831092219.txt`(log_timestamp.txt) will be created including the logging for that program excuction, in this case the list of the 3 invalid commands.
 
 Example of logging to console:
 
@@ -88,6 +87,6 @@ I used some commom sense and coded it considering the robots could not go over t
 
 ### Possible improvements, if this was a real project:
   * Create Command classes, like: PlaceCommand, MoveCommand
-  * More specific logging for the "invalid commands"
+  * More specific logging for the "invalid commands", add reason for the command be invalid
   * Use a proper testing framework, like RSPEC
   * Make the Output and Log method selectable through Env variable

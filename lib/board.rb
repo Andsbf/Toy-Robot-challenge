@@ -9,9 +9,9 @@ class Board
   class RobotOutOfRange < StandardError; end
   class RobotCollision < StandardError; end
 
-  def initialize (debug: ENV['DEBUG'], output: ConsoleOutput.new, logger: FileOutput.new)
+  def initialize (debug: true, output: ConsoleOutput.new, logger: FileOutput.new)
     @robots = {}
-    @debug = debug.to_s == "true"
+    @debug = debug
     # @output where robot's reports are printed/written
     @output = output
     # @logger where debug/logs are printed/written
